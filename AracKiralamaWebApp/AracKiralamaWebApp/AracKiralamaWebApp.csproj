@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AracKiralamaWebService">
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\AracKiralamaWebService.dll</HintPath>
+    </Reference>
     <Reference Include="Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\AracKiralamaWebServis\WebService\bin\Business.dll</HintPath>
@@ -129,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AracController.cs" />
     <Compile Include="Controllers\SirketController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -147,6 +151,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Sirket\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Arac\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\IRepository.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Concretes\AracRepository.cs" />
     <Compile Include="Concretes\SirketRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

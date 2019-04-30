@@ -1,0 +1,27 @@
+﻿@model List<Model.DTOs.AracDTO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<body>
+
+    @foreach (var arac in Model)
+    {
+        <h1>@arac.airbag</h1>
+        <h1>@arac.bagajHacmi</h1>
+        <h1>@arac.ehliyetYasi</h1>
+        <h1>@arac.gunlukFiyat</h1>
+        <h1>@arac.gunlukKm</h1>
+        <h1>@arac.KM</h1>
+        <h1>@arac.koltukSayisi</h1>
+        <h1>@arac.marka</h1>
+        <h1>@arac.model</h1>
+        <h1>@arac.sirketAdi</h1>
+        <h1>@arac.yasSiniri</h1>
+        <h1>@arac.aracID</h1>
+
+
+    }
+
+
+</body>

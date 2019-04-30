@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WebService")]
+[assembly: AssemblyTitle("AracKiralamaWebService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WebService")]
+[assembly: AssemblyProduct("AracKiralamaWebService")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2736fb66-0a26-4b0e-9096-75d8809c69ca")]
+[assembly: Guid("a9ce4c7d-9d55-4436-92db-c46e159ce4a3")]
 
 // Version information for an assembly consists of the following four values:
 //

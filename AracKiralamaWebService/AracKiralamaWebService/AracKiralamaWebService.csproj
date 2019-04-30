@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2736FB66-0A26-4B0E-9096-75D8809C69CA}</ProjectGuid>
+    <ProjectGuid>{A9CE4C7D-9D55-4436-92DB-C46E159CE4A3}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebService</RootNamespace>
-    <AssemblyName>WebService</AssemblyName>
+    <RootNamespace>AracKiralamaWebService</RootNamespace>
+    <AssemblyName>AracKiralamaWebService</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -44,28 +44,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Documents\GitHub\AracKiralamaSistemi\AracKiralamaApp\Business\bin\Debug\Business.dll</HintPath>
+    <Reference Include="Business">
+      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\Business.dll</HintPath>
     </Reference>
-    <Reference Include="DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Documents\GitHub\AracKiralamaSistemi\AracKiralamaApp\DAL\bin\Debug\DAL.dll</HintPath>
+    <Reference Include="Core">
+      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\Core.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Documents\GitHub\AracKiralamaSistemi\AracKiralamaApp\Model\bin\Debug\EntityFramework.dll</HintPath>
+    <Reference Include="DAL">
+      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\Documents\GitHub\AracKiralamaSistemi\AracKiralamaApp\Model\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Documents\GitHub\AracKiralamaSistemi\AracKiralamaApp\Model\bin\Debug\Model.dll</HintPath>
+    <Reference Include="Model">
+      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\Model.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -94,10 +93,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AracWebService.asmx" />
     <Content Include="SirketWebService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AracWebService.asmx.cs">
+      <DependentUpon>AracWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SirketWebService.asmx.cs">
       <DependentUpon>SirketWebService.asmx</DependentUpon>
@@ -117,9 +121,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>64262</DevelopmentServerPort>
+          <DevelopmentServerPort>54616</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64262/</IISUrl>
+          <IISUrl>http://localhost:54616/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
