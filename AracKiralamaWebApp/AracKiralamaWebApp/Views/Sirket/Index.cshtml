@@ -1,0 +1,23 @@
+﻿@model List<Model.DTOs.SirketDTO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<body>
+
+    @foreach (var ent in Model)
+    {
+        <h1>@ent.sirketAdi</h1>
+        <h1>@ent.Sehir</h1>
+        <h1>@ent.sirketPuani</h1>
+        <h1>@ent.acikAdres</h1>
+        
+        foreach (var arac in ent.Araclar.ToList())
+        {
+            <h2>@arac.marka</h2>
+            <h2>@arac.model</h2>
+
+        }
+    }
+
+</body>
