@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AracKiralamaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arac">
+          <Key>
+            <PropertyRef Name="aracID" />
+          </Key>
+          <Property Name="aracID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sirketID" Type="int" />
+          <Property Name="marka" Type="nvarchar" MaxLength="50" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" />
+          <Property Name="yasSiniri" Type="int" />
+          <Property Name="ehliyetYasi" Type="int" />
+          <Property Name="gunlukKm" Type="int" />
+          <Property Name="KM" Type="bigint" />
+          <Property Name="airbag" Type="bit" />
+          <Property Name="bagajHacmi" Type="int" />
+          <Property Name="koltukSayisi" Type="int" />
+          <Property Name="gunlukFiyat" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Istek">
+          <Key>
+            <PropertyRef Name="istekID" />
+          </Key>
+          <Property Name="istekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriID" Type="int" Nullable="false" />
+          <Property Name="aracID" Type="int" Nullable="false" />
+          <Property Name="baslangicTarihi" Type="date" />
+          <Property Name="bitisTarihi" Type="date" />
+          <Property Name="durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="İl">
+          <Key>
+            <PropertyRef Name="ilID" />
+          </Key>
+          <Property Name="ilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ilAdi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KiralikAraclar">
+          <Key>
+            <PropertyRef Name="kiralikaraclarID" />
+          </Key>
+          <Property Name="kiralikaraclarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriID" Type="int" Nullable="false" />
+          <Property Name="aracID" Type="int" Nullable="false" />
+          <Property Name="baslangicTarihi" Type="date" />
+          <Property Name="bitisTarihi" Type="date" />
+          <Property Name="kiralamaUcreti" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="kullaniciID" />
+          </Key>
+          <Property Name="kullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sirketID" Type="int" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" />
+          <Property Name="adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="soyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="rolID" Type="int" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="MusteriBilgileri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="int" Nullable="false" />
+          <Property Name="adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="soyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="cinsiyet" Type="bit" />
+          <Property Name="telNo" Type="nvarchar" MaxLength="11" />
+          <Property Name="ilID" Type="int" />
+          <Property Name="acikAdres" Type="nvarchar" MaxLength="50" />
+          <Property Name="dogumTarihi" Type="date" />
+          <Property Name="ehliyetTarihi" Type="date" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rol" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sirket">
+          <Key>
+            <PropertyRef Name="sirketID" />
+          </Key>
+          <Property Name="sirketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sirketAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="aracSayisi" Type="int" />
+          <Property Name="sirketPuani" Type="int" />
+          <Property Name="ilID" Type="int" />
+          <Property Name="acikAdres" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Arac_Sirket">
+          <End Role="Sirket" Type="Self.Sirket" Multiplicity="0..1" />
+          <End Role="Arac" Type="Self.Arac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="Arac">
+              <PropertyRef Name="sirketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istek_Arac">
+          <End Role="Arac" Type="Self.Arac" Multiplicity="1" />
+          <End Role="Istek" Type="Self.Istek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="Istek">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istek_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Istek" Type="Self.Istek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="Istek">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KiralikAraclar_Arac">
+          <End Role="Arac" Type="Self.Arac" Multiplicity="1" />
+          <End Role="KiralikAraclar" Type="Self.KiralikAraclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="KiralikAraclar">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KiralikAraclar_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="KiralikAraclar" Type="Self.KiralikAraclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="KiralikAraclar">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="rolID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="rolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Sirket">
+          <End Role="Sirket" Type="Self.Sirket" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="sirketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusteriBilgileri_İl">
+          <End Role="İl" Type="Self.İl" Multiplicity="0..1" />
+          <End Role="MusteriBilgileri" Type="Self.MusteriBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İl">
+              <PropertyRef Name="ilID" />
+            </Principal>
+            <Dependent Role="MusteriBilgileri">
+              <PropertyRef Name="ilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusteriBilgileri_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriBilgileri" Type="Self.MusteriBilgileri" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="MusteriBilgileri">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sirket_İl">
+          <End Role="İl" Type="Self.İl" Multiplicity="0..1" />
+          <End Role="Sirket" Type="Self.Sirket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İl">
+              <PropertyRef Name="ilID" />
+            </Principal>
+            <Dependent Role="Sirket">
+              <PropertyRef Name="ilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AracKiralamaDBModelStoreContainer">
+          <EntitySet Name="Arac" EntityType="Self.Arac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Istek" EntityType="Self.Istek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="İl" EntityType="Self.İl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KiralikAraclar" EntityType="Self.KiralikAraclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriBilgileri" EntityType="Self.MusteriBilgileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sirket" EntityType="Self.Sirket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Arac_Sirket" Association="Self.FK_Arac_Sirket">
+            <End Role="Sirket" EntitySet="Sirket" />
+            <End Role="Arac" EntitySet="Arac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istek_Arac" Association="Self.FK_Istek_Arac">
+            <End Role="Arac" EntitySet="Arac" />
+            <End Role="Istek" EntitySet="Istek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istek_Musteri" Association="Self.FK_Istek_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Istek" EntitySet="Istek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KiralikAraclar_Arac" Association="Self.FK_KiralikAraclar_Arac">
+            <End Role="Arac" EntitySet="Arac" />
+            <End Role="KiralikAraclar" EntitySet="KiralikAraclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KiralikAraclar_Musteri" Association="Self.FK_KiralikAraclar_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="KiralikAraclar" EntitySet="KiralikAraclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Rol" Association="Self.FK_Kullanici_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Sirket" Association="Self.FK_Kullanici_Sirket">
+            <End Role="Sirket" EntitySet="Sirket" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusteriBilgileri_İl" Association="Self.FK_MusteriBilgileri_İl">
+            <End Role="İl" EntitySet="İl" />
+            <End Role="MusteriBilgileri" EntitySet="MusteriBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusteriBilgileri_Musteri" Association="Self.FK_MusteriBilgileri_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriBilgileri" EntitySet="MusteriBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sirket_İl" Association="Self.FK_Sirket_İl">
+            <End Role="İl" EntitySet="İl" />
+            <End Role="Sirket" EntitySet="Sirket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AracKiralamaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arac">
+          <Key>
+            <PropertyRef Name="aracID" />
+          </Key>
+          <Property Name="aracID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sirketID" Type="Int32" />
+          <Property Name="marka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="yasSiniri" Type="Int32" />
+          <Property Name="ehliyetYasi" Type="Int32" />
+          <Property Name="gunlukKm" Type="Int32" />
+          <Property Name="KM" Type="Int64" />
+          <Property Name="airbag" Type="Boolean" />
+          <Property Name="bagajHacmi" Type="Int32" />
+          <Property Name="koltukSayisi" Type="Int32" />
+          <Property Name="gunlukFiyat" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Sirket" Relationship="Self.FK_Arac_Sirket" FromRole="Arac" ToRole="Sirket" />
+          <NavigationProperty Name="Istek" Relationship="Self.FK_Istek_Arac" FromRole="Arac" ToRole="Istek" />
+          <NavigationProperty Name="KiralikAraclar" Relationship="Self.FK_KiralikAraclar_Arac" FromRole="Arac" ToRole="KiralikAraclar" />
+        </EntityType>
+        <EntityType Name="Istek">
+          <Key>
+            <PropertyRef Name="istekID" />
+          </Key>
+          <Property Name="istekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriID" Type="Int32" Nullable="false" />
+          <Property Name="aracID" Type="Int32" Nullable="false" />
+          <Property Name="baslangicTarihi" Type="DateTime" Precision="0" />
+          <Property Name="bitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="durum" Type="Boolean" />
+          <NavigationProperty Name="Arac" Relationship="Self.FK_Istek_Arac" FromRole="Istek" ToRole="Arac" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Istek_Musteri" FromRole="Istek" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="İl">
+          <Key>
+            <PropertyRef Name="ilID" />
+          </Key>
+          <Property Name="ilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ilAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MusteriBilgileri" Relationship="Self.FK_MusteriBilgileri_İl" FromRole="İl" ToRole="MusteriBilgileri" />
+          <NavigationProperty Name="Sirket" Relationship="Self.FK_Sirket_İl" FromRole="İl" ToRole="Sirket" />
+        </EntityType>
+        <EntityType Name="KiralikAraclar">
+          <Key>
+            <PropertyRef Name="kiralikaraclarID" />
+          </Key>
+          <Property Name="kiralikaraclarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteriID" Type="Int32" Nullable="false" />
+          <Property Name="aracID" Type="Int32" Nullable="false" />
+          <Property Name="baslangicTarihi" Type="DateTime" Precision="0" />
+          <Property Name="bitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="kiralamaUcreti" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="durum" Type="Boolean" />
+          <NavigationProperty Name="Arac" Relationship="Self.FK_KiralikAraclar_Arac" FromRole="KiralikAraclar" ToRole="Arac" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_KiralikAraclar_Musteri" FromRole="KiralikAraclar" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="kullaniciID" />
+          </Key>
+          <Property Name="kullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sirketID" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rolID" Type="Int32" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_Kullanici_Rol" FromRole="Kullanici" ToRole="Rol" />
+          <NavigationProperty Name="Sirket" Relationship="Self.FK_Kullanici_Sirket" FromRole="Kullanici" ToRole="Sirket" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Istek" Relationship="Self.FK_Istek_Musteri" FromRole="Musteri" ToRole="Istek" />
+          <NavigationProperty Name="KiralikAraclar" Relationship="Self.FK_KiralikAraclar_Musteri" FromRole="Musteri" ToRole="KiralikAraclar" />
+          <NavigationProperty Name="MusteriBilgileri" Relationship="Self.FK_MusteriBilgileri_Musteri" FromRole="Musteri" ToRole="MusteriBilgileri" />
+        </EntityType>
+        <EntityType Name="MusteriBilgileri">
+          <Key>
+            <PropertyRef Name="musteriID" />
+          </Key>
+          <Property Name="musteriID" Type="Int32" Nullable="false" />
+          <Property Name="adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cinsiyet" Type="Boolean" />
+          <Property Name="telNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="ilID" Type="Int32" />
+          <Property Name="acikAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="ehliyetTarihi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="İl" Relationship="Self.FK_MusteriBilgileri_İl" FromRole="MusteriBilgileri" ToRole="İl" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_MusteriBilgileri_Musteri" FromRole="MusteriBilgileri" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Kullanici_Rol" FromRole="Rol" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Sirket">
+          <Key>
+            <PropertyRef Name="sirketID" />
+          </Key>
+          <Property Name="sirketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sirketAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="aracSayisi" Type="Int32" />
+          <Property Name="sirketPuani" Type="Int32" />
+          <Property Name="ilID" Type="Int32" />
+          <Property Name="acikAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Arac" Relationship="Self.FK_Arac_Sirket" FromRole="Sirket" ToRole="Arac" />
+          <NavigationProperty Name="İl" Relationship="Self.FK_Sirket_İl" FromRole="Sirket" ToRole="İl" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Kullanici_Sirket" FromRole="Sirket" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Arac_Sirket">
+          <End Role="Sirket" Type="Self.Sirket" Multiplicity="0..1" />
+          <End Role="Arac" Type="Self.Arac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="Arac">
+              <PropertyRef Name="sirketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istek_Arac">
+          <End Role="Arac" Type="Self.Arac" Multiplicity="1" />
+          <End Role="Istek" Type="Self.Istek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="Istek">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KiralikAraclar_Arac">
+          <End Role="Arac" Type="Self.Arac" Multiplicity="1" />
+          <End Role="KiralikAraclar" Type="Self.KiralikAraclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arac">
+              <PropertyRef Name="aracID" />
+            </Principal>
+            <Dependent Role="KiralikAraclar">
+              <PropertyRef Name="aracID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Istek_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Istek" Type="Self.Istek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="Istek">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusteriBilgileri_İl">
+          <End Role="İl" Type="Self.İl" Multiplicity="0..1" />
+          <End Role="MusteriBilgileri" Type="Self.MusteriBilgileri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İl">
+              <PropertyRef Name="ilID" />
+            </Principal>
+            <Dependent Role="MusteriBilgileri">
+              <PropertyRef Name="ilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sirket_İl">
+          <End Role="İl" Type="Self.İl" Multiplicity="0..1" />
+          <End Role="Sirket" Type="Self.Sirket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İl">
+              <PropertyRef Name="ilID" />
+            </Principal>
+            <Dependent Role="Sirket">
+              <PropertyRef Name="ilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KiralikAraclar_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="KiralikAraclar" Type="Self.KiralikAraclar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="KiralikAraclar">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="rolID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="rolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Sirket">
+          <End Role="Sirket" Type="Self.Sirket" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sirket">
+              <PropertyRef Name="sirketID" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="sirketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusteriBilgileri_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriBilgileri" Type="Self.MusteriBilgileri" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriID" />
+            </Principal>
+            <Dependent Role="MusteriBilgileri">
+              <PropertyRef Name="musteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AracKiralamaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arac" EntityType="Self.Arac" />
+          <EntitySet Name="Istek" EntityType="Self.Istek" />
+          <EntitySet Name="İl" EntityType="Self.İl" />
+          <EntitySet Name="KiralikAraclar" EntityType="Self.KiralikAraclar" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="MusteriBilgileri" EntityType="Self.MusteriBilgileri" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Sirket" EntityType="Self.Sirket" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Arac_Sirket" Association="Self.FK_Arac_Sirket">
+            <End Role="Sirket" EntitySet="Sirket" />
+            <End Role="Arac" EntitySet="Arac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istek_Arac" Association="Self.FK_Istek_Arac">
+            <End Role="Arac" EntitySet="Arac" />
+            <End Role="Istek" EntitySet="Istek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KiralikAraclar_Arac" Association="Self.FK_KiralikAraclar_Arac">
+            <End Role="Arac" EntitySet="Arac" />
+            <End Role="KiralikAraclar" EntitySet="KiralikAraclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Istek_Musteri" Association="Self.FK_Istek_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Istek" EntitySet="Istek" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusteriBilgileri_İl" Association="Self.FK_MusteriBilgileri_İl">
+            <End Role="İl" EntitySet="İl" />
+            <End Role="MusteriBilgileri" EntitySet="MusteriBilgileri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sirket_İl" Association="Self.FK_Sirket_İl">
+            <End Role="İl" EntitySet="İl" />
+            <End Role="Sirket" EntitySet="Sirket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KiralikAraclar_Musteri" Association="Self.FK_KiralikAraclar_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="KiralikAraclar" EntitySet="KiralikAraclar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Rol" Association="Self.FK_Kullanici_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Sirket" Association="Self.FK_Kullanici_Sirket">
+            <End Role="Sirket" EntitySet="Sirket" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusteriBilgileri_Musteri" Association="Self.FK_MusteriBilgileri_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriBilgileri" EntitySet="MusteriBilgileri" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AracKiralamaDBModelStoreContainer" CdmEntityContainer="AracKiralamaDBEntities">
+          <EntitySetMapping Name="Arac">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.Arac">
+              <MappingFragment StoreEntitySet="Arac">
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+                <ScalarProperty Name="marka" ColumnName="marka" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="yasSiniri" ColumnName="yasSiniri" />
+                <ScalarProperty Name="ehliyetYasi" ColumnName="ehliyetYasi" />
+                <ScalarProperty Name="gunlukKm" ColumnName="gunlukKm" />
+                <ScalarProperty Name="KM" ColumnName="KM" />
+                <ScalarProperty Name="airbag" ColumnName="airbag" />
+                <ScalarProperty Name="bagajHacmi" ColumnName="bagajHacmi" />
+                <ScalarProperty Name="koltukSayisi" ColumnName="koltukSayisi" />
+                <ScalarProperty Name="gunlukFiyat" ColumnName="gunlukFiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Istek">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.Istek">
+              <MappingFragment StoreEntitySet="Istek">
+                <ScalarProperty Name="istekID" ColumnName="istekID" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="baslangicTarihi" ColumnName="baslangicTarihi" />
+                <ScalarProperty Name="bitisTarihi" ColumnName="bitisTarihi" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="İl">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.İl">
+              <MappingFragment StoreEntitySet="İl">
+                <ScalarProperty Name="ilID" ColumnName="ilID" />
+                <ScalarProperty Name="ilAdi" ColumnName="ilAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KiralikAraclar">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.KiralikAraclar">
+              <MappingFragment StoreEntitySet="KiralikAraclar">
+                <ScalarProperty Name="kiralikaraclarID" ColumnName="kiralikaraclarID" />
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="baslangicTarihi" ColumnName="baslangicTarihi" />
+                <ScalarProperty Name="bitisTarihi" ColumnName="bitisTarihi" />
+                <ScalarProperty Name="kiralamaUcreti" ColumnName="kiralamaUcreti" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanici">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="adi" ColumnName="adi" />
+                <ScalarProperty Name="soyadi" ColumnName="soyadi" />
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriBilgileri">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.MusteriBilgileri">
+              <MappingFragment StoreEntitySet="MusteriBilgileri">
+                <ScalarProperty Name="musteriID" ColumnName="musteriID" />
+                <ScalarProperty Name="adi" ColumnName="adi" />
+                <ScalarProperty Name="soyadi" ColumnName="soyadi" />
+                <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+                <ScalarProperty Name="telNo" ColumnName="telNo" />
+                <ScalarProperty Name="ilID" ColumnName="ilID" />
+                <ScalarProperty Name="acikAdres" ColumnName="acikAdres" />
+                <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+                <ScalarProperty Name="ehliyetTarihi" ColumnName="ehliyetTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+                <ScalarProperty Name="rol1" ColumnName="rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sirket">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.Sirket">
+              <MappingFragment StoreEntitySet="Sirket">
+                <ScalarProperty Name="sirketID" ColumnName="sirketID" />
+                <ScalarProperty Name="sirketAdi" ColumnName="sirketAdi" />
+                <ScalarProperty Name="aracSayisi" ColumnName="aracSayisi" />
+                <ScalarProperty Name="sirketPuani" ColumnName="sirketPuani" />
+                <ScalarProperty Name="ilID" ColumnName="ilID" />
+                <ScalarProperty Name="acikAdres" ColumnName="acikAdres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AracKiralamaDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
