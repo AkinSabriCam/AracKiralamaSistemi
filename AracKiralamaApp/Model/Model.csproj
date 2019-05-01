@@ -52,6 +52,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DTOs\AracDTO.cs" />
     <Compile Include="DTOs\IstekDTO.cs" />
+    <Compile Include="DTOs\KiralikAracDTO.cs" />
     <Compile Include="DTOs\KullaniciDTO.cs" />
     <Compile Include="DTOs\MusteriBilgileriDTO.cs" />
     <Compile Include="Models\Arac.cs">

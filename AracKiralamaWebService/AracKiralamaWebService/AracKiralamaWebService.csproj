@@ -95,6 +95,7 @@
   <ItemGroup>
     <Content Include="AracWebService.asmx" />
     <Content Include="IstekWebService.asmx" />
+    <Content Include="KiralamaWebService.asmx" />
     <Content Include="MusteriWebService.asmx" />
     <Content Include="SirketWebService.asmx" />
     <Content Include="Web.config" />
@@ -106,6 +107,10 @@
     </Compile>
     <Compile Include="IstekWebService.asmx.cs">
       <DependentUpon>IstekWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KiralamaWebService.asmx.cs">
+      <DependentUpon>KiralamaWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MusteriWebService.asmx.cs">

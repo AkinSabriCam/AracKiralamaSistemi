@@ -27,6 +27,11 @@ namespace Business.BLLs
                     istekdto.durum = entity.durum;
                     istekdto.istekID = entity.istekID;
                     istekdto.musteriID = entity.musteriID;
+                    istekdto.aracMarka = entity.Arac.marka;
+                    istekdto.aracModel = entity.Arac.model;
+                    istekdto.musteriAdi = entity.Musteri.MusteriBilgileri.adi;
+                    istekdto.musteriSoyadi = entity.Musteri.MusteriBilgileri.soyadi;
+                    istekdto.telNo = entity.Musteri.MusteriBilgileri.telNo;
                     Istekler.Add(istekdto);
                 }
                 return Istekler;

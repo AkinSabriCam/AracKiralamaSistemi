@@ -10,16 +10,34 @@ using System.Threading.Tasks;
 
 namespace DAL.Concretes
 {
-    public class KiralikAracRepository : IRepository<Model.Models.KiralikAraclar>
+    public class KiralikAracRepository : IRepository<Model.Models.KiralikAraclar>,IDisposable
     {
         public bool Add(KiralikAraclar model)
         {
-            throw new NotImplementedException();
+            using (DBContext dbContext = new DBContext())
+            {
+                try
+                {
+                    dbContext.Set<KiralikAraclar>().Add(model);
+                    dbContext.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+
+            }
         }
 
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
 
         public List<KiralikAraclar> Get()
@@ -46,7 +64,22 @@ namespace DAL.Concretes
 
         public bool Update(KiralikAraclar model)
         {
-            throw new NotImplementedException();
+            using (DBContext dbContext = new DBContext())
+            {
+                try
+                {
+                    DbSet<KiralikAraclar> Table = dbContext.Set<KiralikAraclar>();
+                    var ent = Table.FirstOrDefault(x => x.kiralikaraclarID == model.kiralikaraclarID);
+                    ent.durum = false;
+                    dbContext.SaveChanges();
+                    return true;
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
+
+            }
         }
     }
 }

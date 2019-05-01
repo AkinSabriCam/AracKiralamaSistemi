@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AracKiralamaWebService;
+using Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,8 +38,16 @@ namespace AracKiralamaWeb.Controllers
                 var model = aracWebService.GetCarById(id);
                 return View(model);
             }
+            
+        }
+        [HttpPost]
+        public ActionResult KiralamaIslemi(int aracid,MusteriBilgileri model)
+        {
+            KiralamaWebService kiralamaWebService = new KiralamaWebService();
+            kiralamaWebService.Add(Convert.ToDateTime(Session["baslangic"]), Convert.ToDateTime(Session["baslangic"]),
+                aracid, model);
 
-           
+            return RedirectToAction("Index");
         }
     }
 }
