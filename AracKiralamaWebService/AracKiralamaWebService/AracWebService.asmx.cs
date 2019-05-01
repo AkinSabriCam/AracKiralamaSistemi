@@ -1,5 +1,6 @@
 ﻿using Business.BLLs;
 using BusinessLayerLogic.BLLs;
+using Model.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,20 @@ namespace AracKiralamaWebService
     {
 
         [WebMethod]
-        public List<Model.DTOs.AracDTO> Get()
+        public List<AracDTO> GetForCustomers(DateTime baslangic,DateTime bitis)
         {
             AracBLL aracbll = new AracBLL();
-            return aracbll.Get();
-             
+            
+            return aracbll.GetCarsForCustomer(baslangic,bitis);
         }
+
+        public AracDTO GetCarById(int id)
+        {
+            AracBLL aracbll = new AracBLL();
+
+            return aracbll.GetById(id);
+        }
+
+
     }
 }

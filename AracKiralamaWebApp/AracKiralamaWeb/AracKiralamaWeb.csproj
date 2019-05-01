@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A9CE4C7D-9D55-4436-92DB-C46E159CE4A3}</ProjectGuid>
+    <ProjectGuid>{B6B47AB6-1629-48D8-B3D4-4558CE567C95}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AracKiralamaWebService</RootNamespace>
-    <AssemblyName>AracKiralamaWebService</AssemblyName>
+    <RootNamespace>AracKiralamaWeb</RootNamespace>
+    <AssemblyName>AracKiralamaWeb</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -44,27 +44,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AracKiralamaWebService">
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\AracKiralamaWebService.dll</HintPath>
+    </Reference>
     <Reference Include="Business">
-      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\Business.dll</HintPath>
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\Business.dll</HintPath>
     </Reference>
     <Reference Include="Core">
-      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\Core.dll</HintPath>
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\Core.dll</HintPath>
     </Reference>
     <Reference Include="DAL">
-      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\DAL.dll</HintPath>
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\DAL.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\EntityFramework.dll</HintPath>
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Model">
-      <HintPath>..\..\AracKiralamaApp\Business\bin\Debug\Model.dll</HintPath>
+      <HintPath>..\..\AracKiralamaWebService\AracKiralamaWebService\bin\Model.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -84,7 +87,69 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Sirket\Index.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AracCalisanController.cs" />
+    <Compile Include="Controllers\AracController.cs" />
+    <Compile Include="Controllers\SirketController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Arac\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\AracCalisan\Index.cshtml" />
+    <Content Include="Views\AracCalisan\GetCar.cshtml" />
+    <Content Include="Views\AracCalisan\Kirala.cshtml" />
+    <Content Include="Views\Arac\GetCar.cshtml" />
+    <Content Include="Views\Arac\Istek.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -93,30 +158,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AracWebService.asmx" />
-    <Content Include="IstekWebService.asmx" />
-    <Content Include="MusteriWebService.asmx" />
-    <Content Include="SirketWebService.asmx" />
-    <Content Include="Web.config" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AracWebService.asmx.cs">
-      <DependentUpon>AracWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IstekWebService.asmx.cs">
-      <DependentUpon>IstekWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="MusteriWebService.asmx.cs">
-      <DependentUpon>MusteriWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SirketWebService.asmx.cs">
-      <DependentUpon>SirketWebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -131,9 +177,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54616</DevelopmentServerPort>
+          <DevelopmentServerPort>58280</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54616/</IISUrl>
+          <IISUrl>http://localhost:58280/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

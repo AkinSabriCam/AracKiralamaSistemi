@@ -11,7 +11,7 @@ namespace Business.BLLs
 {
     public class AracBLL
     {
-        public List<AracDTO> Get()
+        public List<AracDTO> GetAllCars()
         {
             using (AracRepository aracRepository = new AracRepository())
             {
@@ -39,6 +39,56 @@ namespace Business.BLLs
                 return Araclar;
             }
         }
+
+
+        public List<AracDTO> GetCarsForCustomer(DateTime baslangic,DateTime bitis)
+        {  
+            
+            using (AracRepository aracRepository = new AracRepository())
+            {
+                List<AracDTO> Araclar = new List<AracDTO>();
+
+                var model = aracRepository.Get();// tüm araçları aldık
+
+                var kiralikaracRepo = new KiralikAracRepository();
+                var kiralikmodels = kiralikaracRepo.Get();
+
+
+                foreach (var entity in model.ToList())
+                {
+                    var test = 
+                   kiralikmodels.Where(x => x.aracID == entity.aracID && (x.bitisTarihi>baslangic || x.bitisTarihi==baslangic) && x.baslangicTarihi<bitis).ToList();
+                    if (test.Count > 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        var aracdto = new AracDTO();
+                        aracdto.airbag = entity.airbag;
+                        aracdto.aracID = entity.aracID;
+                        aracdto.bagajHacmi = entity.bagajHacmi;
+                        aracdto.ehliyetYasi = entity.ehliyetYasi;
+                        aracdto.gunlukFiyat = entity.gunlukFiyat;
+                        aracdto.gunlukKm = entity.gunlukKm;
+                        aracdto.KM = entity.KM;
+                        aracdto.koltukSayisi = entity.koltukSayisi;
+                        aracdto.marka = entity.marka;
+                        aracdto.model = entity.model;
+                        aracdto.sirketAdi = entity.Sirket.sirketAdi;
+                        aracdto.sirketID = entity.sirketID;
+                        aracdto.yasSiniri = entity.yasSiniri;
+                        Araclar.Add(aracdto);
+                    }
+                    
+                }
+                return Araclar;
+            }
+        }
+
+    
+
+
         public AracDTO GetById(int id)
         { 
             using (AracRepository aracRepo = new AracRepository())

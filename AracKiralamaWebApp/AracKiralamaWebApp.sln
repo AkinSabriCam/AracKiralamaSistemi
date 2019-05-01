@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AracKiralamaWebApp", "AracKiralamaWebApp\AracKiralamaWebApp.csproj", "{47315B14-A633-41AD-A875-E2CC7D99D12F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AracKiralamaWeb", "AracKiralamaWeb\AracKiralamaWeb.csproj", "{B6B47AB6-1629-48D8-B3D4-4558CE567C95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{47315B14-A633-41AD-A875-E2CC7D99D12F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47315B14-A633-41AD-A875-E2CC7D99D12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47315B14-A633-41AD-A875-E2CC7D99D12F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{47315B14-A633-41AD-A875-E2CC7D99D12F}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B6B47AB6-1629-48D8-B3D4-4558CE567C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6B47AB6-1629-48D8-B3D4-4558CE567C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6B47AB6-1629-48D8-B3D4-4558CE567C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6B47AB6-1629-48D8-B3D4-4558CE567C95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

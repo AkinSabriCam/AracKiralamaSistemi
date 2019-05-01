@@ -10,7 +10,7 @@ using Model.DTOs;
 using Model.Models;
 namespace DAL.Concretes
 {
-    public class SirketRepository : IRepository<Sirket>
+    public class SirketRepository : IRepository<Sirket>,IDisposable
     {
         public SirketRepository()
         {
@@ -52,7 +52,10 @@ namespace DAL.Concretes
             }
         }
 
-        
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
 
         public List<Sirket> Get()
         {

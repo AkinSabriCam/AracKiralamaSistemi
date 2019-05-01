@@ -1,0 +1,39 @@
+﻿@model List<Model.DTOs.AracDTO>
+@{
+    ViewBag.Title = "GetCar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+    <table class="table table-bordered">
+        <tr>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Günlük Fiyat</th>
+            <th>Günlük Km Sınırı</th>
+            <th>Güncel KM</th>
+            <th>Koltuk Sayısı</th>
+            <th>Şirket Adı</th>
+            <th>Yaş Sınırı</th>
+            <th>Ehliyet Yaşı</th>
+        </tr>
+        @foreach (var arac in Model)
+        {
+            <tr>
+                <td>@arac.marka</td>
+                <td>@arac.model</td>
+                <td>@arac.gunlukFiyat</td>
+                <td>@arac.gunlukKm</td>
+                <td>@arac.KM</td>
+                <td>@arac.koltukSayisi</td>
+                <td>@arac.sirketAdi</td>
+                <td>@arac.yasSiniri</td>
+                <td>@arac.ehliyetYasi</td>
+                <td><a href="/AracCalisan/Kirala/@arac.aracID" class="btn btn-warning">Kirala</a></td>
+            </tr>
+        }
+
+    </table>
+</body>
+
+
+
