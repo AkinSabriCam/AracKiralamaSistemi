@@ -50,6 +50,7 @@
     <Compile Include="Abstractions\IRepository.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Concretes\AracRepository.cs" />
+    <Compile Include="Concretes\KullaniciRepository.cs" />
     <Compile Include="Concretes\MusteriRepository.cs" />
     <Compile Include="Concretes\IstekRepository.cs" />
     <Compile Include="Concretes\KiralikAracRepository.cs" />

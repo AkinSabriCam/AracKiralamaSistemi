@@ -1,0 +1,69 @@
+﻿
+@model Model.DTOs.AracDTO
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("UpdateCar", "AllCars", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Marka</label>
+        @Html.TextBoxFor(x => x.marka, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Model</label>
+        @Html.TextBoxFor(x => x.model, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Yaş Sınırı</label>
+        @Html.TextBoxFor(x => x.yasSiniri, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Koltuk Sayısı</label>
+        @Html.TextBoxFor(x => x.koltukSayisi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>KM</label>
+        @Html.TextBoxFor(x => x.KM, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Günlük KM</label>
+        @Html.TextBoxFor(x => x.gunlukKm, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Günlük Fiyat</label>
+        @Html.TextBoxFor(x => x.gunlukFiyat, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Ehliyet Yaşı</label>
+        @Html.TextBoxFor(x => x.ehliyetYasi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Bagaj Hacmi</label>
+        @Html.TextBoxFor(x => x.bagajHacmi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>AİRBAG</label>
+        <select name="airbag">
+            <option value="true">VAR</option>
+            <option value="false">YOK</option>
+        </select>
+
+    </div>
+    @Html.HiddenFor(x => x.aracID)
+    @Html.HiddenFor(x => x.sirketID)
+    <button type="submit">EKLE</button>
+}
+
+
+
+

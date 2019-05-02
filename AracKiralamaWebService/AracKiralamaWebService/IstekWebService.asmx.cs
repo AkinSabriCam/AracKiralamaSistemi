@@ -21,10 +21,15 @@ namespace AracKiralamaWebService
     {
 
         [WebMethod]
-        public List<IstekDTO> GetAll()
+        public List<IstekDTO> GetAll(int sirketId)
         { IstekBLL istekBusiness = new IstekBLL();
-            return istekBusiness.GetAll();
+            return istekBusiness.GetAll(sirketId);
 
+        }
+        public IstekDTO GetById(int id)
+        {
+            IstekBLL istekBusiness = new IstekBLL();
+                return istekBusiness.GetById(id);
         }
 
         public void Post(DateTime baslangic,DateTime bitis,MusteriBilgileri model,int aracid)
@@ -48,6 +53,17 @@ namespace AracKiralamaWebService
         {
             IstekBLL istekBusiness = new IstekBLL();
             istekBusiness.Update(aracid,baslangic,bitis);
+        }
+
+        public void Accepted(int istekid)
+        {
+            var model = GetById(istekid);
+
+            KiralamaWebService kiralamaWebService = new KiralamaWebService();
+
+            kiralamaWebService.Add(model.musteriID, model.aracID, Convert.ToDateTime(model.baslangicTarihi), Convert.ToDateTime(model.bitisTarihi));
+
+            Update(model.aracID, Convert.ToDateTime(model.baslangicTarihi), Convert.ToDateTime(model.bitisTarihi));
         }
     }
 }

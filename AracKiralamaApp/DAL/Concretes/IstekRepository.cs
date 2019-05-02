@@ -61,7 +61,7 @@ namespace DAL.Concretes
                 try
                 {
                     DbSet<Istek> Table = dbContext.Set<Istek>();
-                    return Table.Include(x => x.Arac).Include(x => x.Musteri).ToList();
+                    return Table.Include(x => x.Arac).Include(x => x.Musteri).Include(x=>x.Musteri.MusteriBilgileri).ToList();
                 }
                 catch(Exception ex)
                 {
@@ -77,7 +77,7 @@ namespace DAL.Concretes
                 try
                 {
                     DbSet<Istek> Table = dbContext.Set<Istek>();
-                    return Table.Include(x => x.Arac).Include(x => x.Musteri).FirstOrDefault(x=>x.istekID==id);
+                    return Table.Include(x => x.Arac).Include(x => x.Musteri).Include(x=>x.Musteri.MusteriBilgileri).FirstOrDefault(x=>x.istekID==id);
                 }
                 catch (Exception ex)
                 {

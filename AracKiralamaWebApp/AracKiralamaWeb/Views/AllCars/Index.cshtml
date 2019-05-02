@@ -1,9 +1,14 @@
-﻿@model List<Model.DTOs.AracDTO>
-@{
-    ViewBag.Title = "GetCar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿
+
+@model List<Model.DTOs.AracDTO>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
 <body>
+    <a class="btn btn-success" href="/AllCars/NewCar">Yeni Araba</a>
     <table class="table table-bordered">
         <tr>
             <th>Marka</th>
@@ -15,7 +20,6 @@
             <th>Şirket Adı</th>
             <th>Yaş Sınırı</th>
             <th>Ehliyet Yaşı</th>
-            <th>Şirket</th>
         </tr>
         @foreach (var arac in Model)
         {
@@ -29,8 +33,7 @@
                 <td>@arac.sirketAdi</td>
                 <td>@arac.yasSiniri</td>
                 <td>@arac.ehliyetYasi</td>
-                <td>@arac.sirketAdi</td>
-                <td><a href="/Arac/Istek/@arac.aracID" class="btn btn-warning">Kirala</a></td>
+                <td><a href="/AllCars/Update/@arac.aracID" class="btn btn-warning">Güncelle</a></td>
             </tr>
         }
 

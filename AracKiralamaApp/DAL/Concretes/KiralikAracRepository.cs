@@ -47,7 +47,8 @@ namespace DAL.Concretes
                 try
                 {
                     DbSet<KiralikAraclar> Table = dbContext.Set<KiralikAraclar>();
-                    return Table.Include(x=>x.Musteri).Include(x=>x.Arac).ToList();
+                    return 
+                Table.Include(x=>x.Musteri).Include(x=>x.Musteri.MusteriBilgileri).Include(x=>x.Arac).Include(x=>x.Arac.Sirket).ToList();
                 }
                 catch(Exception ex)
                 {

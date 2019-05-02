@@ -50,6 +50,7 @@
     <Compile Include="BLLs\AracBLL.cs" />
     <Compile Include="BLLs\IstekBLL.cs" />
     <Compile Include="BLLs\KiralamaBLL.cs" />
+    <Compile Include="BLLs\KullaniciBLL.cs" />
     <Compile Include="BLLs\MusteriBilgileriBLL.cs" />
     <Compile Include="BLLs\SirketBLL.cs" />
     <Compile Include="Class1.cs" />

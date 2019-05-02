@@ -1,0 +1,25 @@
+﻿@model Model.Models.Kullanici
+    @{
+        ViewBag.Title = "YeniCalisan";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <div class="container">
+        <form action="/Calisanlar/CalisanEkle" method="post">
+
+            <div class="form-group">
+                <label>Adı</label>
+                <input type="text" name="adi" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Soyadı</label>
+                <input type="text" name="soyadi" class="form-control" />
+            </div><div class="form-group">
+                <label>Kullanıcı Adı</label>
+                <input type="text" name="username" class="form-control" />
+            </div><div class="form-group">
+                <label>Şifre</label>
+                <input type="text" name="password" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-default">Çalışan Ekle</button>
+    </form>
+   </div>

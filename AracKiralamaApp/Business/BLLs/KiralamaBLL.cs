@@ -11,14 +11,14 @@ namespace Business.BLLs
 {
     public class KiralamaBLL
     {
-        public List<KiralikAracDTO> Get()
+        public List<KiralikAracDTO> Get(int sirketId)
         {
             using (KiralikAracRepository kiralikAracRepo = new KiralikAracRepository())
             {
                 try
                 {
                     var KiralikAraclar = new List<KiralikAracDTO>();
-                    var model = kiralikAracRepo.Get();
+                    var model = kiralikAracRepo.Get().Where(x=>x.Arac.sirketID==sirketId);
                     foreach (var ent in model.ToList())
                     {
                         var kiralikdto = new KiralikAracDTO();
@@ -34,6 +34,7 @@ namespace Business.BLLs
                         kiralikdto.musteriID = ent.musteriID;
                         kiralikdto.musteriSoyad = ent.Musteri.MusteriBilgileri.soyadi;
                         kiralikdto.telNo = ent.Musteri.MusteriBilgileri.telNo;
+                        kiralikdto.SirketAdi = ent.Arac.Sirket.sirketAdi;
                         KiralikAraclar.Add(kiralikdto);
                     }
                     return KiralikAraclar;

@@ -17,7 +17,7 @@ namespace Model.DTOs
 
         public string Marka { get; set; }
         public string Model { get; set; }
-       
+        public string  SirketAdi { get; set; }
         public int aracID { get; set; }
         public Nullable<System.DateTime> baslangicTarihi { get; set; }
         public Nullable<System.DateTime> bitisTarihi { get; set; }

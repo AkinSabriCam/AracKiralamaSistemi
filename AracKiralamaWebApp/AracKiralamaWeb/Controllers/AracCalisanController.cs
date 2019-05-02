@@ -1,4 +1,6 @@
-﻿using AracKiralamaWebService;
+﻿
+using AracKiralamaWebService;
+using Model.DTOs;
 using Model.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace AracKiralamaWeb.Controllers
-{
+{   
+    [Authorize (Roles ="Yonetici,Calisan")]
     public class AracCalisanController : Controller
     {
         // GET: AracCalisan
@@ -24,7 +27,7 @@ namespace AracKiralamaWeb.Controllers
             {
                 Session["baslangic"] = baslangic;
                 Session["bitis"] = bitis;
-                var model = aracWebService.GetForCustomers(baslangic,bitis);
+                var model = aracWebService.GetForUsers(baslangic,bitis,Convert.ToInt16(Session["sirketId"]));
                 return View(model);
             }
 
@@ -40,11 +43,12 @@ namespace AracKiralamaWeb.Controllers
             }
             
         }
+        
         [HttpPost]
         public ActionResult KiralamaIslemi(int aracid,MusteriBilgileri model)
         {
             KiralamaWebService kiralamaWebService = new KiralamaWebService();
-            kiralamaWebService.Add(Convert.ToDateTime(Session["baslangic"]), Convert.ToDateTime(Session["baslangic"]),
+            kiralamaWebService.Add(Convert.ToDateTime(Session["baslangic"]), Convert.ToDateTime(Session["bitis"]),
                 aracid, model);
 
             return RedirectToAction("Index");

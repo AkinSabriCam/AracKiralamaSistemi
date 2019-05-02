@@ -1,0 +1,30 @@
+﻿@model List<Model.DTOs.KullaniciDTO>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+   <a class="btn btn-success" href="/Calisanlar/YeniCalisan">Yeni Çalışan Ekle</a>
+    <table class="table table-hover">
+        <tr>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>Şirket</th>
+            <th></th>
+        </tr>
+        @foreach(var ent in Model)
+        {
+            <tr>
+                <td>@ent.adi</td>
+                <td>@ent.soyadi</td>
+                <td>@ent.sirketAdi</td>
+                 <td><a class="btn btn-warning" href="/Calisanlar/Sil/@ent.kullaniciID">Kullanıcıyı Sil</a></td>
+            </tr>
+        }
+
+    </table>
+
+
+
+</body>

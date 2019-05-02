@@ -98,7 +98,17 @@ namespace DAL.Concretes
                     var oldModel = table.FirstOrDefault(x => x.aracID == model.aracID);
                     if (oldModel != null)
                     {
-                        oldModel = model;
+                        oldModel.airbag = model.airbag;
+                        oldModel.bagajHacmi = model.bagajHacmi;
+                        oldModel.ehliyetYasi = model.ehliyetYasi;
+                        oldModel.gunlukFiyat = model.gunlukFiyat;
+                        oldModel.gunlukKm = model.gunlukKm;
+                        oldModel.KM = model.KM;
+                        oldModel.koltukSayisi = model.koltukSayisi;
+                        oldModel.marka = model.marka;
+                        oldModel.model = model.model;
+                        oldModel.yasSiniri = model.yasSiniri;
+
                         dbContext.SaveChanges();
                         return true;
                     }

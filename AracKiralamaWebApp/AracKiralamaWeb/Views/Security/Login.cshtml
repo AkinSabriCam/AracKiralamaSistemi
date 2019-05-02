@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+<form action="/Security/Login" method="post">
+
+    <div class="form-group">
+        <label> Username</label>
+        <input type="text" class="form-control" name="username" />
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="text" class="form-control" name="password" />
+    </div>
+    <button type="submit" class="btn btn-default">Giriş</button>
+
+</form>

@@ -11,7 +11,7 @@ namespace Business.BLLs
 {
     public class IstekBLL
     {
-        public List<IstekDTO> GetAll()
+        public List<IstekDTO> GetAll(int sirketId)
         {
             using (IstekRepository istekRepository = new IstekRepository())
             {
@@ -20,19 +20,26 @@ namespace Business.BLLs
                 var model = istekRepository.Get();
                 foreach (var entity in model.ToList())
                 {
-                    var istekdto = new IstekDTO();
-                    istekdto.aracID = entity.aracID;
-                    istekdto.baslangicTarihi = entity.baslangicTarihi;
-                    istekdto.bitisTarihi = entity.bitisTarihi;
-                    istekdto.durum = entity.durum;
-                    istekdto.istekID = entity.istekID;
-                    istekdto.musteriID = entity.musteriID;
-                    istekdto.aracMarka = entity.Arac.marka;
-                    istekdto.aracModel = entity.Arac.model;
-                    istekdto.musteriAdi = entity.Musteri.MusteriBilgileri.adi;
-                    istekdto.musteriSoyadi = entity.Musteri.MusteriBilgileri.soyadi;
-                    istekdto.telNo = entity.Musteri.MusteriBilgileri.telNo;
-                    Istekler.Add(istekdto);
+                    if (entity.durum != false)
+                    {
+                        if (entity.Arac.sirketID == sirketId)
+                        {
+                            var istekdto = new IstekDTO();
+                            istekdto.aracID = entity.aracID;
+                            istekdto.baslangicTarihi = entity.baslangicTarihi;
+                            istekdto.bitisTarihi = entity.bitisTarihi;
+                            istekdto.durum = entity.durum;
+                            istekdto.istekID = entity.istekID;
+                            istekdto.musteriID = entity.musteriID;
+                            istekdto.aracMarka = entity.Arac.marka;
+                            istekdto.aracModel = entity.Arac.model;
+                            istekdto.musteriAdi = entity.Musteri.MusteriBilgileri.adi;
+                            istekdto.musteriSoyadi = entity.Musteri.MusteriBilgileri.soyadi;
+                            istekdto.telNo = entity.Musteri.MusteriBilgileri.telNo;
+                            Istekler.Add(istekdto);
+                        }
+                    }
+                    
                 }
                 return Istekler;
             }
@@ -67,6 +74,35 @@ namespace Business.BLLs
             using (IstekRepository istekRepo = new IstekRepository())
             {
                 istekRepo.Add(model);
+            }
+        }
+
+        public IstekDTO GetById(int id)
+        {
+            using (IstekRepository istekRepo = new IstekRepository())
+            {
+                try
+                {
+                    var entity = istekRepo.GetById(id);
+                    var istekdto = new IstekDTO();
+                    istekdto.aracID = entity.aracID;
+                    istekdto.baslangicTarihi = entity.baslangicTarihi;
+                    istekdto.bitisTarihi = entity.bitisTarihi;
+                    istekdto.durum = entity.durum;
+                    istekdto.istekID = entity.istekID;
+                    istekdto.musteriID = entity.musteriID;
+                    istekdto.aracMarka = entity.Arac.marka;
+                    istekdto.aracModel = entity.Arac.model;
+                    istekdto.musteriAdi = entity.Musteri.MusteriBilgileri.adi;
+                    istekdto.musteriSoyadi = entity.Musteri.MusteriBilgileri.soyadi;
+                    istekdto.telNo = entity.Musteri.MusteriBilgileri.telNo;
+
+                    return istekdto;
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
             }
         }
     }

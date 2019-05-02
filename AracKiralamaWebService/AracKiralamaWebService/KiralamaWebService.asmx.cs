@@ -21,10 +21,10 @@ namespace AracKiralamaWebService
     {
 
         [WebMethod]
-        public List<KiralikAracDTO> Get()
+        public List<KiralikAracDTO> Get(int sirketId)
         {
             KiralamaBLL kiralamaBusiness = new KiralamaBLL();
-            var model = kiralamaBusiness.Get();
+            var model = kiralamaBusiness.Get(sirketId);
             return model;
         }
 
@@ -38,7 +38,9 @@ namespace AracKiralamaWebService
 
         [WebMethod]
         public void Add(DateTime baslangic,DateTime bitis,int aracid,MusteriBilgileri model)
-        {
+        { 
+            // bu ekleme metodu istek olmadan yapılmış eklemeler için kullanılmaktadır.
+
             MusteriWebService musteriWebService = new MusteriWebService();
             musteriWebService.Add(model); // musteri web servisini kullanarak müşteriyi ekledik
 
@@ -54,13 +56,35 @@ namespace AracKiralamaWebService
             kiralamaEntity.bitisTarihi = bitis;
             kiralamaEntity.durum = true;
             kiralamaEntity.musteriID = model.musteriID;
-            kiralamaEntity.kiralamaUcreti = arac.gunlukFiyat * ((int)fark.TotalDays);
+            kiralamaEntity.kiralamaUcreti = arac.gunlukFiyat * ((decimal)fark.TotalDays);
 
             kiralamaBusiness.Add(kiralamaEntity); // ilgili entity'i ekledik
 
             IstekWebService istekWebService = new IstekWebService();
             istekWebService.Update(aracid, baslangic, bitis);
 
+        }
+
+        [WebMethod]
+        public void Add(int musteriId,int aracid,DateTime baslangic,DateTime bitis)
+        {
+            KiralamaBLL kiralamaBusiness = new KiralamaBLL();
+
+            AracWebService aracWebService = new AracWebService();
+            var arac=aracWebService.GetCarById(aracid);
+
+            KiralikAraclar kiralikentity = new KiralikAraclar();
+            kiralikentity.aracID = aracid;
+            kiralikentity.musteriID = musteriId;
+            kiralikentity.durum = true;
+            kiralikentity.baslangicTarihi = baslangic;
+            kiralikentity.bitisTarihi = bitis;
+
+            TimeSpan fark = (bitis - baslangic);
+            kiralikentity.kiralamaUcreti = arac.gunlukFiyat * ((decimal)fark.TotalDays);
+
+            kiralamaBusiness.Add(kiralikentity);
+            
         }
     }
 }
