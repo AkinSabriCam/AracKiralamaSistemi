@@ -16,7 +16,9 @@
         <th>Başlangıç Tarihi</th>
         <th>Bitiş Tarihi</th>
         <th>Toplam Ücret</th>
-        
+        <th>Anlık Kiralık Durumu</th>
+
+
     </tr>
     @foreach(var ent in Model)
     {
@@ -28,9 +30,17 @@
         <td>@ent.musteriSoyad</td>
         <td>@ent.telNo</td>
         <td>@ent.SirketAdi</td>
-        <td>@ent.baslangicTarihi</td>
-        <td>@ent.bitisTarihi</td>
+        <td>@ent.baslangicTarihi.ToString().Substring(0,10)</td>
+        <td>@ent.bitisTarihi.ToString().Substring(0,10)</td>
         <td>@ent.kiralamaUcreti</td>
+        @if (ent.durum==true)
+        {
+            <td>Evet</td>
+        }
+        else {
+            <td>Hayır</td>
+        }
+
 
     </tr>
 

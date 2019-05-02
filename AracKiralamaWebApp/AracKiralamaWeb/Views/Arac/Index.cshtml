@@ -2,18 +2,20 @@
     ViewBag.Title = "Index";
 }
 <body>
-    <form action="/Arac/GetCar" method="post">
-        <div class="form-group">
-            <label>Başlangıç Tarihi</label>
-            <input type="date" name="baslangic">
-        </div>
+    <div class="container">
+        <form action="/Arac/GetCar" method="post">
+            <div class="form-group">
+                <label>Başlangıç Tarihi</label>
+                <input type="date" name="baslangic" class="form-control" style="width:200px">
+            </div>
 
-        <div class="form-group">
-            <label>Bitiş Tarihi</label>
-            <input type="date" name="bitis">
-        </div>
+            <div class="form-group">
+                <label>Bitiş Tarihi</label>
+                <input type="date" name="bitis" class="form-control" style="width:200px">
+            </div>
 
-        <button type="submit" class="btn btn-default">Araçları Listele</button>
-    </form>
+            <button type="submit" class="btn btn-default">Araçları Listele</button>
+        </form>
+    </div>
 </body>
 

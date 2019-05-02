@@ -3,71 +3,72 @@
     ViewBag.Title = "Istek";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <form action="/Arac/IstekOlustur" method="post">
+        <div class="form-group">
+            <label> Başlangıç Tarihi</label>
+            <input type="text" value=@Session["baslangic"].ToString().Substring(0,9) readonly="readonly" class="form-control" />
+        </div>
 
-<form action="/Arac/IstekOlustur" method="post">
-    <div class="form-group">
-        <label> Başlangıç Tarihi</label>
-        <input type="text" value=@Session["baslangic"].ToString() readonly="readonly" class="form-control" />
-    </div>
+        <div class="form-group">
+            <label> Bitiş Tarihi</label>
+            <input type="text" value=@Session["bitis"].ToString().Substring(0,9) readonly="readonly" class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label> Bitiş Tarihi</label>
-        <input type="text" value=@Session["bitis"].ToString() readonly="readonly" class="form-control"/>
-    </div>
+        <div class="form-group">
+            <label> Araç Markası</label>
+            <input type="text" value=@Model.marka readonly="readonly" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> Araç Modeli</label>
+            <input type="text" value=@Model.model readonly="readonly" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> Araç Id</label>
+            <input type="text" value=@Model.aracID name="aracid" readonly="readonly" class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label> Araç Markası</label>
-        <input type="text" value=@Model.marka readonly="readonly" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label> Araç Modeli</label>
-        <input type="text" value=@Model.model readonly="readonly" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label> Araç Id</label>
-        <input type="text" value=@Model.aracID name="aracid" readonly="readonly" class="form-control"/>
-    </div>
+        <div class="form-group">
+            <label>Ad</label>
+            <input type="text" name="adi" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> Soyad</label>
+            <input type="text" name="soyadi" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Cinsiyet</label>
+            <select name="cinsiyet" class="form-control">
+                <option value="true">Erkek</option>
+                <option value="false">Kadın</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label> Telefon No</label>
+            <input type="text" name="telNo" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> İl</label>
+            <select name="ilID" class="form-control">
+                <option value="1">Bursa</option>
+                <option value="2">İstanbul</option>
+                <option value="3">Ankara</option>
+                <option value="4">İzmir</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label> Açık Adres</label>
+            <input type="text" name="acikAdres" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> Doğum Tarihi</label>
+            <input type="date" name="dogumTarihi" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> Ehliyet Tarihi</label>
+            <input type="date" name="ehliyetTarihi" class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label>Ad</label>
-        <input type="text" name="adi"  class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label> Soyad</label>
-        <input type="text" name="soyadi" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label>Cinsiyet</label>
-        <select name="cinsiyet" class="form-control">
-            <option value="true">Erkek</option>
-            <option value="false">Kadın</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label> Telefon No</label>
-        <input type="text" name="telNo"  class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label> İl</label>
-        <select name="ilID" class="form-control">
-            <option value="1">Bursa</option>
-            <option value="2">İstanbul</option>
-            <option value="3">Ankara</option>
-            <option value="4">İzmir</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label> Açık Adres</label>
-        <input type="text" name="acikAdres" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label> Doğum Tarihi</label>
-        <input type="date" name="dogumTarihi" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label> Ehliyet Tarihi</label>
-        <input type="date" name="ehliyetTarihi" class="form-control"/>
-    </div>
-
-    <button type="submit" class="btn btn-default">Aracı Kirala</button>
-</form>
+        <button type="submit" class="btn btn-default">Aracı Kirala</button>
+    </form>
+</div>

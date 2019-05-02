@@ -24,8 +24,8 @@
             <td>@ent.musteriAdi</td>
             <td>@ent.musteriSoyadi</td>
             <td>@ent.telNo</td>
-            <td>@ent.baslangicTarihi</td>
-            <td>@ent.bitisTarihi</td>
+            <td>@ent.baslangicTarihi.ToString().Substring(0,10)</td>
+            <td>@ent.bitisTarihi.ToString().Substring(0,10)</td>
             <td><a class="btn btn-success" href="/KiralamaTalep/KiralamaOnay/@ent.istekID">ONAY</a></td>
        </tr>
      }

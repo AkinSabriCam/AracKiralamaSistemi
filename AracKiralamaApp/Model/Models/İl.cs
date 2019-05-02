@@ -20,7 +20,7 @@ namespace Model.Models
             this.MusteriBilgileri = new HashSet<MusteriBilgileri>();
             this.Sirket = new HashSet<Sirket>();
         }
-        
+    
         public int ilID { get; set; }
         public string ilAdi { get; set; }
     

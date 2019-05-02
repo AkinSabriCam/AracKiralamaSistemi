@@ -84,7 +84,9 @@ namespace AracKiralamaWebService
             kiralikentity.kiralamaUcreti = arac.gunlukFiyat * ((decimal)fark.TotalDays);
 
             kiralamaBusiness.Add(kiralikentity);
-            
+            IstekWebService istekWebService = new IstekWebService();
+            istekWebService.Update(aracid, baslangic, bitis);
+
         }
     }
 }
